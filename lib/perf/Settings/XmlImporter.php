@@ -59,7 +59,7 @@ class XmlImporter implements Importer
 
                 $this->parseValues($sxeChild, $childPathTokens);
             }
-        } else {
+        } elseif (count($pathTokens) > 0) {
             $settingKey = join('.', $pathTokens);
 
             $this->values[$settingKey] = (string) $sxe;
