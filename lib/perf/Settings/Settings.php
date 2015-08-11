@@ -55,6 +55,22 @@ class Settings
      *
      *
      * @param string $key
+     * @return bool
+     * @throws \InvalidArgumentException
+     */
+    public function has($key)
+    {
+        if (!is_string($key)) {
+            throw new \InvalidArgumentException("Invalid setting key.");
+        }
+
+        return array_key_exists($key, $this->values);
+    }
+
+    /**
+     *
+     *
+     * @param string $key
      * @return mixed
      * @throws \InvalidArgumentException
      * @throws \DomainException
@@ -70,5 +86,15 @@ class Settings
         }
 
         throw new \DomainException("Setting with key '{$key}' not found.");
+    }
+
+    /**
+     *
+     *
+     * @return {string:mixed}
+     */
+    public function getAll()
+    {
+        return $this->values;
     }
 }
